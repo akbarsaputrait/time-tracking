@@ -64,131 +64,158 @@
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-12">
-							<!-- Nav tabs -->
-							<ul class="nav nav-tabs" role="tablist">
-								<li class="nav-item">
-									<a class="nav-link active" data-toggle="tab" href="#activities" role="tab">Activities</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" data-toggle="tab" href="#task" role="tab">Task</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" data-toggle="tab" href="#screenshots" role="tab">Screenshots</a>
-								</li>
-							</ul>
-							<!-- Tab panes -->
-							<div class="tab-content">
-								<div class="tab-pane active" id="activities" role="tabpanel">
-									<div class="table-responsive">
-										<table class="table table-bordered">
-											<thead>
-												<tr>
-													<td>Waktu</td>
-													<td>Aplikasi</td>
-													<td>Yang dikerjakan</td>
-												</tr>
-											</thead>
-											<tbody>
-											<?php
+							<?php
+	foreach ($user->result() as $users) {
+?>
+								<div class="text-center">
+									<h1 class="mb-1">
+										<?= $users->name; ?>
+									</h1>
+									<h5 class="text-muted">
+										<?= $users->email; ?> <br/>
+										<?= $users->pc; ?>
+									</h5>
+								</div>
+								<?php
+}
+?>
+								<!-- Nav tabs -->
+								<ul class="nav nav-tabs" role="tablist">
+									<li class="nav-item">
+										<a class="nav-link active" data-toggle="tab" href="#activities" role="tab">Activities</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" data-toggle="tab" href="#task" role="tab">Task</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" data-toggle="tab" href="#screenshots" role="tab">Screenshots</a>
+									</li>
+								</ul>
+								<!-- Tab panes -->
+								<div class="tab-content">
+									<div class="tab-pane active" id="activities" role="tabpanel">
+										<div class="table-responsive">
+											<table class="table table-bordered">
+												<thead>
+													<tr>
+														<td>Waktu</td>
+														<td>Aplikasi</td>
+														<td>Yang dikerjakan</td>
+													</tr>
+												</thead>
+												<tbody>
+													<?php
 												foreach($activities->result() as $act)
 												{
 											?>
-												<tr>
-													<td><?= $act->date; ?> | <?= $act->time; ?></td>
-													<td><?= $act->app; ?></td>
-													<td><?= $act->title; ?></td>
-												</tr>
-												<?php
+														<tr>
+															<td>
+																<?= $act->date; ?> |
+																	<?= $act->time; ?>
+															</td>
+															<td>
+																<?= $act->app; ?>
+															</td>
+															<td>
+																<?= $act->title; ?>
+															</td>
+														</tr>
+														<?php
 												}
 												?>
-											</tbody>
-										</table>
+												</tbody>
+											</table>
+										</div>
 									</div>
-								</div>
-								<div class="tab-pane" id="task" role="tabpanel">
-									<div class="table-responsive">
-										<table class="table table-bordered">
-											<thead>
-												<tr>
-													<td>Jam</td>
-													<td>Task</td>
-													<td>Status</td>
-												</tr>
-											</thead>
-											<tbody>
-											<?php
+									<div class="tab-pane" id="task" role="tabpanel">
+										<div class="table-responsive">
+											<table class="table table-bordered">
+												<thead>
+													<tr>
+														<td>Jam</td>
+														<td>Task</td>
+														<td>Status</td>
+													</tr>
+												</thead>
+												<tbody>
+													<?php
 												foreach($task->result() as $tk)
 												{
 
 											?>
-												<tr>
-													<td><?= $tk->date;?> | <?= $tk->time;?></td>
-													<td><?= $tk->task;?></td>
-													<td>
-														<?= $tk->progress; ?>
-													</td>
-												</tr>
-											<?php
+														<tr>
+															<td>
+																<?= $tk->date;?> |
+																	<?= $tk->time;?>
+															</td>
+															<td>
+																<?= $tk->task;?>
+															</td>
+															<td>
+																<?= $tk->progress; ?>
+															</td>
+														</tr>
+														<?php
 												}
 											?>
-											</tbody>
-										</table>
-									</div>
-								</div>
-								<div class="tab-pane" id="screenshots" role="tabpanel">
-									<div class="row">
-										<div class="col-md-1">
-											<b style="font-size: 1.5rem;">11:20</b>
-											<br/> 29 Januari 2018
+												</tbody>
+											</table>
 										</div>
-										<div class="col-md-11">
-											<div class="row">
-												<div class="col-md-3">
-													<img src="https://screenshotmonitor.com/blog/wp-content/uploads/2014/03/TimeDoctor-007.png" width="100%" id="ss">
+									</div>
+									<div class="tab-pane" id="screenshots" role="tabpanel">
+										<div class="row">
+											<div class="col-md-1">
+												<b style="font-size: 1.5rem;">11:20</b>
+												<br/> 29 Januari 2018
+											</div>
+											<div class="col-md-11">
+												<div class="row">
+													<div class="col-md-3">
+														<img src="https://screenshotmonitor.com/blog/wp-content/uploads/2014/03/TimeDoctor-007.png" width="100%" id="ss">
+													</div>
+													<div class="col-md-3">
+														<img src="https://screenshotmonitor.com/blog/wp-content/uploads/2014/03/TimeDoctor-007.png" width="100%" id="ss">
+													</div>
+													<div class="col-md-3">
+														<img src="https://screenshotmonitor.com/blog/wp-content/uploads/2014/03/TimeDoctor-007.png" width="100%" id="ss">
+													</div>
+													<div class="col-md-3">
+														<img src="https://screenshotmonitor.com/blog/wp-content/uploads/2014/03/TimeDoctor-007.png" width="100%" id="ss">
+													</div>
+													<div class="col-md-3">
+														<img src="https://screenshotmonitor.com/blog/wp-content/uploads/2014/03/TimeDoctor-007.png" width="100%" id="ss">
+													</div>
 												</div>
-												<div class="col-md-3">
-													<img src="https://screenshotmonitor.com/blog/wp-content/uploads/2014/03/TimeDoctor-007.png" width="100%" id="ss">
-												</div>
-												<div class="col-md-3">
-													<img src="https://screenshotmonitor.com/blog/wp-content/uploads/2014/03/TimeDoctor-007.png" width="100%" id="ss">
-												</div>
-												<div class="col-md-3">
-													<img src="https://screenshotmonitor.com/blog/wp-content/uploads/2014/03/TimeDoctor-007.png" width="100%" id="ss">
-												</div>
-												<div class="col-md-3">
-													<img src="https://screenshotmonitor.com/blog/wp-content/uploads/2014/03/TimeDoctor-007.png" width="100%" id="ss">
+											</div>
+											<div class="col-md-1">
+												<b style="font-size: 1.5rem;">11:18</b>
+												<br/> 29 Januari 2018
+											</div>
+											<div class="col-md-11">
+												<div class="row">
+													<div class="col-md-3">
+														<img src="https://screenshotmonitor.com/blog/wp-content/uploads/2014/03/TimeDoctor-007.png" width="100%" id="ss">
+													</div>
+													<div class="col-md-3">
+														<img src="https://screenshotmonitor.com/blog/wp-content/uploads/2014/03/TimeDoctor-007.png" width="100%" id="ss">
+													</div>
+													<div class="col-md-3">
+														<img src="https://screenshotmonitor.com/blog/wp-content/uploads/2014/03/TimeDoctor-007.png" width="100%" id="ss">
+													</div>
+													<div class="col-md-3">
+														<img src="https://screenshotmonitor.com/blog/wp-content/uploads/2014/03/TimeDoctor-007.png" width="100%" id="ss">
+													</div>
+													<div class="col-md-3">
+														<img src="https://screenshotmonitor.com/blog/wp-content/uploads/2014/03/TimeDoctor-007.png" width="100%" id="ss">
+													</div>
+													<div class="col-md-3">
+														<img src="https://screenshotmonitor.com/blog/wp-content/uploads/2014/03/TimeDoctor-007.png" width="100%" id="ss">
+													</div>
 												</div>
 											</div>
 										</div>
-										<div class="col-md-1">
-											<b style="font-size: 1.5rem;">11:18</b>
-											<br/> 29 Januari 2018
-										</div>
-										<div class="col-md-11">
-											<div class="row">
-												<div class="col-md-3">
-													<img src="https://screenshotmonitor.com/blog/wp-content/uploads/2014/03/TimeDoctor-007.png" width="100%" id="ss">
-												</div>
-												<div class="col-md-3">
-													<img src="https://screenshotmonitor.com/blog/wp-content/uploads/2014/03/TimeDoctor-007.png" width="100%" id="ss">
-												</div>
-												<div class="col-md-3">
-													<img src="https://screenshotmonitor.com/blog/wp-content/uploads/2014/03/TimeDoctor-007.png" width="100%" id="ss">
-												</div>
-												<div class="col-md-3">
-													<img src="https://screenshotmonitor.com/blog/wp-content/uploads/2014/03/TimeDoctor-007.png" width="100%" id="ss">
-												</div>
-												<div class="col-md-3">
-													<img src="https://screenshotmonitor.com/blog/wp-content/uploads/2014/03/TimeDoctor-007.png" width="100%" id="ss">
-												</div>
-												<div class="col-md-3">
-													<img src="https://screenshotmonitor.com/blog/wp-content/uploads/2014/03/TimeDoctor-007.png" width="100%" id="ss">
-												</div>
-											</div>
-										</div>
 									</div>
 								</div>
-							</div>
 						</div>
 					</div>
 				</div>

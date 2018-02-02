@@ -20,8 +20,9 @@ class User extends CI_Controller {
     
     public function activities($id)
     {
+		$data['user'] = $this->db->query('SELECT * FROM user WHERE id_user = '.$id);
 		$data['activities'] = $this->db->query('SELECT * FROM activities JOIN user ON activities.id_user = user.id_user WHERE activities.id_activities = '.$id.' ORDER BY time DESC	');
-		$data['task'] = $this->db->query('SELECT * FROM task JOIN user ON task.id_user = user.id_user WHERE task.id_user = '.$id.' ORDER BY time DESC ');
+		$data['task'] = $this->db->query('SELECT * FROM task JOIN user ON task.id_user = user.id_user WHERE task.id_user = '.$id.' ORDER BY date DESC ');
         $this->load->view('activities', $data);
     }
 }
