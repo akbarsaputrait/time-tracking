@@ -74,7 +74,7 @@
 									<div>
 										<span class="h4 d-block font-weight-normal mb-1">
 											<?php
-$sql = $this->db->query('SELECT count(*) AS id_user FROM user');
+$sql = $this->db->query('SELECT count(*) AS id_user FROM dashboard');
 foreach ($sql->result() as $row) {
 echo $row->id_user;
 }
@@ -137,7 +137,7 @@ echo $row->id_user;
 											</thead>
 											<tbody id="users">
 												<?php
-										$query = $this->db->query('SELECT * FROM user');
+										$query = $this->db->query('SELECT * FROM dashboard');
 										$x = 1;
 										foreach($query->result() as $row){							
 ?>

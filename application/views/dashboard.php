@@ -52,13 +52,13 @@
 				<nav class="sidebar-nav">
 					<ul class="nav">
 						<li class="nav-item">
-							<a href="<?php echo base_url('index.php/dashboard');?>" class="nav-link active klik" id="dashboard">
+							<a href="<?php echo base_url('dashboard');?>" class="nav-link active klik" id="dashboard">
 								<i class="icon icon-home"></i> Dashboard
 							</a>
-							<a href="<?php echo base_url('index.php/user');?>" class="nav-link klik" id="user">
+							<a href="<?php echo base_url('user');?>" class="nav-link klik" id="user">
 								<i class="icon icon-user"></i> User
 							</a>
-							<a href="<?php echo base_url('index.php/profil');?>" class="nav-link klik" id="profil">
+							<a href="<?php echo base_url('profil');?>" class="nav-link klik" id="profil">
 								<i class="icon icon-settings"></i> Profil
 							</a>
 						</li>
@@ -74,7 +74,7 @@
 									<div>
 										<span class="h4 d-block font-weight-normal mb-2">
 											<?php
-$sql = $this->db->query('SELECT count(*) AS id_user FROM user');
+$sql = $this->db->query('SELECT count(*) AS id_user FROM dashboard');
 foreach ($sql->result() as $row) {
     echo $row->id_user;
 }
@@ -139,7 +139,7 @@ foreach ($sql->result() as $row) {
 											</thead>
 											<tbody id="users">
 												<?php
-										$query = $this->db->query('SELECT * FROM user');
+										$query = $this->db->query('SELECT * FROM dashboard');
 										$x = 1;
 										foreach($query->result() as $row){							
 ?>

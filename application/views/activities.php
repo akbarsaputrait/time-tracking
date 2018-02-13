@@ -65,15 +65,18 @@
 					<div class="row">
 						<div class="col-md-12">
 							<?php
-	foreach ($user->result() as $users) {
+	foreach ($dashboard->result() as $users) {
 ?>
 								<div class="text-center">
 									<h1 class="mb-1">
 										<?= $users->name; ?>
 									</h1>
 									<h5 class="text-muted">
-										<?= $users->email; ?> <br/>
-										<?= $users->pc; ?>
+										<?= $users->email; ?>
+											<br/>
+											<?= $users->pc; ?>
+											<br/>
+											<span style="font-size: 12px;"><?= $users->id_user; ?></span>
 									</h5>
 								</div>
 								<?php
@@ -84,12 +87,21 @@
 									<li class="nav-item">
 										<a class="nav-link active" data-toggle="tab" href="#activities" role="tab">Activities</a>
 									</li>
-									<li class="nav-item">
-										<a class="nav-link" data-toggle="tab" href="#task" role="tab">Task</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link" data-toggle="tab" href="#screenshots" role="tab">Screenshots</a>
-									</li>
+									<?php
+									foreach($status->result() as $st)
+										{
+									?>
+										<li class="nav-item">
+											<a class="nav-link" data-toggle="tab" href="#task" role="tab">Task
+												<span class="badge badge-pill badge-danger"><?=$st->progress?></span>
+											</a>
+										</li>
+										<?php
+												}
+									?>
+										<li class="nav-item">
+											<a class="nav-link" data-toggle="tab" href="#screenshots" role="tab">Screenshots</a>
+										</li>
 								</ul>
 								<!-- Tab panes -->
 								<div class="tab-content">
@@ -110,8 +122,7 @@
 											?>
 														<tr>
 															<td>
-																<?= $act->date; ?> |
-																	<?= $act->time; ?>
+																<?= $act->datetime; ?>
 															</td>
 															<td>
 																<?= $act->app; ?>
@@ -145,8 +156,7 @@
 											?>
 														<tr>
 															<td>
-																<?= $tk->date;?> |
-																	<?= $tk->time;?>
+																<?= $tk->datetime;?>
 															</td>
 															<td>
 																<?= $tk->task;?>
