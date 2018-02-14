@@ -36,7 +36,7 @@ class Activities extends CI_Controller
                 'task' => $task,
                 'datetime' => $datetime,
             );
-            $this->m_api->post('dashboard', array('do' => $task), array('id_user'))
+            $this->m_api->post('dashboard', array('do' => $task), array('id_user'));
         } else {
             $response[] = array(
                 'status' => false,
