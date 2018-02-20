@@ -11,19 +11,17 @@ class User extends CI_Controller {
 
 	public function index()
 	{
-		$where = array(
-			'username' => 'admin'
-		);
-		$data['admin'] = $this->m_data->select('admin', $where);
+		$data['clients'] = $this->db->query('SELECT * FROM client');
+		$data['tasks'] = $this->db->query('SELECT * FROM task');
 		$this->load->view('user', $data);
     }
     
     public function activities($id)
     {
-		$data['dashboard'] = $this->db->query('SELECT * FROM dashboard WHERE id_user = "'.$id.'"');
-		$data['activities'] = $this->db->query('SELECT * FROM activities JOIN dashboard ON activities.id_user = dashboard.id_user WHERE activities.id_user = "'.$id.'" ORDER BY datetime DESC');
-		$data['task'] = $this->db->query('SELECT * FROM task JOIN dashboard ON task.id_user = dashboard.id_user WHERE task.id_user = "'.$id.'" ORDER BY datetime DESC ');
-		$data['status'] = $this->db->query('SELECT COUNT(*) as progress FROM task WHERE progress = "Waiting" AND id_user = "'.$id.'"');
-        $this->load->view('activities', $data);
+		$data['clients'] = $this->db->query('SELECT * FROM client WHERE id = '.$id);
+		$data['activities'] = $this->db->query('SELECT * FROM activities JOIN client ON activities.userid = client.id WHERE activities.userid = '.$id.'');
+		$data['tasks'] = $this->db->query('SELECT * FROM task JOIN client ON task.userid = client.id WHERE task.userid = '.$id.'');
+		$data['status'] = $this->db->query('SELECT COUNT(*) as status FROM task WHERE status = "Waiting" AND userid = "'.$id.'"');
+		$this->load->view('activities', $data);
     }
 }

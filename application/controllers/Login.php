@@ -28,19 +28,8 @@ class Login extends CI_Controller
         $this->form_validation->set_rules('password', 'Password', 'required|trim');
 
         if ($this->form_validation->run()) {
-            $where = array(
-                'username' => $user,
-                'password' => $pass
-            );
-            $cek = $this->m_data->select('admin', $where);
-            if($cek->num_rows() > 0)
+            if($user = 'admin' && $pass = 'admin')
             {
-                foreach ($cek->result() as $data)
-                {
-                    $sess_data['id_admin'] = $data->id_admin;
-                    $sess_data['username'] = $data->username;
-                    $this->session->set_userdata($sess_data);
-                }
                 redirect(base_url('dashboard'));
             }else{
                 $this->load->view('login');

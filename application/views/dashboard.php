@@ -30,14 +30,6 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<img src="<?php echo base_url('assets/imgs/avatar-1.png') ?>" class="avatar avatar-sm" alt="logo">
-						<span class="small ml-1 d-md-down-none">
-							<?php 
-								foreach($admin->result() as $row)
-								{
-									echo $row->username;
-								}
-							?>
-						</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right" style="margin-top: 10px;">
 						<a href="<?php echo base_url(); ?>" class="dropdown-item" style="box-shadow: 0 5px 10px 0 rgba(0,0,0,.1);">
@@ -74,9 +66,9 @@
 									<div>
 										<span class="h4 d-block font-weight-normal mb-2">
 											<?php
-$sql = $this->db->query('SELECT count(*) AS id_user FROM dashboard');
+$sql = $this->db->query('SELECT count(*) AS id FROM client');
 foreach ($sql->result() as $row) {
-    echo $row->id_user;
+    echo $row->id;
 }
 ?>
 										</span>
@@ -129,17 +121,11 @@ foreach ($sql->result() as $row) {
 													<td>
 														Email
 													</td>
-													<td>
-														Task
-													</td>
-													<td>
-														Status
-													</td>
 												</tr>
 											</thead>
 											<tbody id="users">
 												<?php
-										$query = $this->db->query('SELECT * FROM dashboard');
+										$query = $this->db->query('SELECT * FROM client');
 										$x = 1;
 										foreach($query->result() as $row){							
 ?>
@@ -148,19 +134,13 @@ foreach ($sql->result() as $row) {
 															<?= $x++;?>
 														</td>
 														<td>
-															<?= $row->name;?>
+															<?= $row->username;?>
 														</td>
 														<td>
 															<?= $row->pc;?>
 														</td>
 														<td>
 															<?= $row->email;?>
-														</td>
-														<td>
-															<?= $row->do;?>
-														</td>
-														<td>
-															<?= $row->status;?>
 														</td>
 														<?php
 										}

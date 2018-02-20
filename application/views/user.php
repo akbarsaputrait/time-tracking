@@ -30,14 +30,6 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<img src="<?php echo base_url('assets/imgs/avatar-1.png') ?>" class="avatar avatar-sm" alt="logo">
-						<span class="small ml-1 d-md-down-none">
-							<?php 
-								foreach($admin->result() as $row)
-								{
-									echo $row->username;
-								}
-							?>
-						</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right" style="margin-top: 10px;">
 						<a href="<?php echo base_url(); ?>" class="dropdown-item" style="box-shadow: 0 5px 10px 0 rgba(0,0,0,.1);">
@@ -52,13 +44,13 @@
 				<nav class="sidebar-nav">
 					<ul class="nav">
 						<li class="nav-item">
-							<a href="<?php echo base_url('dashboard');?>" class="nav-link">
+							<a href="<?php echo base_url('dashboard'); ?>" class="nav-link">
 								<i class="icon icon-home"></i> Dashboard
 							</a>
-							<a href="<?php echo base_url('user');?>" class="nav-link active">
+							<a href="<?php echo base_url('user'); ?>" class="nav-link active">
 								<i class="icon icon-user"></i> User
 							</a>
-							<a href="<?php echo base_url('profil');?>" class="nav-link">
+							<a href="<?php echo base_url('profil'); ?>" class="nav-link">
 								<i class="icon icon-settings"></i> Profil
 							</a>
 						</li>
@@ -74,9 +66,9 @@
 									<div>
 										<span class="h4 d-block font-weight-normal mb-1">
 											<?php
-$sql = $this->db->query('SELECT count(*) AS id_user FROM dashboard');
+$sql = $this->db->query('SELECT count(*) AS id FROM client');
 foreach ($sql->result() as $row) {
-echo $row->id_user;
+    echo $row->id;
 }
 ?>
 										</span>
@@ -127,9 +119,6 @@ echo $row->id_user;
 														Email
 													</td>
 													<td>
-														Task
-													</td>
-													<td>
 														Details
 													</td>
 
@@ -137,33 +126,26 @@ echo $row->id_user;
 											</thead>
 											<tbody id="users">
 												<?php
-										$query = $this->db->query('SELECT * FROM dashboard');
-										$x = 1;
-										foreach($query->result() as $row){							
-?>
+foreach ($clients->result() as $client) {
+    ?>
 													<tr>
 														<td>
-															<?php echo $x++;?>
+															<?=$client->id?>
 														</td>
 														<td>
-															<?php echo $row->name;?>
+															<?=$client->username?>
 														</td>
 														<td>
-															<?php echo $row->pc;?>
+															<?=$client->pc?>
 														</td>
 														<td>
-															<?php echo $row->email;?>
+															<?=$client->email?>
 														</td>
 														<td>
-															<?php echo $row->do;?>
-														</td>
-														<td>
-															<a href="<?php echo base_url('user/activities/'.$row->id_user);?>" class="btn btn-primary btn-block">Activities</a>
-														</td>
-														<?php
-										}
-									?>
+														<a href="<?php echo base_url('user/activities/'.$client->id);?>" class="btn btn-primary btn-block">Activities</a>														</td>
 													</tr>
+<?php
+}?>
 											</tbody>
 										</table>
 									</div>

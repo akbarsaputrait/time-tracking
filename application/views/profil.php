@@ -10,6 +10,46 @@
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/font-awesome.min.css'); ?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/simple-line-icons.css'); ?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/styles.css'); ?>">
+	<style type="text/css">
+		#image-preview {
+			width: 200px;
+			height: 200px;
+			border-radius: 100px;
+			position: relative;
+			overflow: hidden;
+			background-color: #f1f1f1;
+			color: #fff;
+			margin: 0 auto;
+		}
+
+		#image-preview input {
+			line-height: 200px;
+			font-size: 200px;
+			position: absolute;
+			opacity: 0;
+			z-index: 10;
+		}
+
+		#image-preview label {
+			position: absolute;
+			z-index: 5;
+			opacity: 0.8;
+			cursor: pointer;
+			background-color: #bdc3c7;
+			width: 200px;
+			height: 50px;
+			font-size: 20px;
+			line-height: 50px;
+			text-transform: uppercase;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: auto;
+			text-align: center;
+		}
+
+	</style>
 </head>
 
 <body class="sidebar-fixed header-fixed">
@@ -79,9 +119,18 @@
 										</div>
 										<div class="card-body">
 											<div class="row">
-												<div class="col-md">
+												<div class="col-md-12">
+													<!-- <img width="200" class="avatar" src="<?php echo base_url(); ?>uploads/<?php echo $upload_data['file_name']; ?>" /> -->
 													<img src="<?php echo base_url('assets/imgs/avatar-1.png') ?>" class="avatar" width="200px" alt="logo" style="display: block; margin: 0 auto">
 												</div>
+												<!-- <div class="col-md-6"> -->
+													<!-- <?php echo form_open_multipart('/profil/upload_file'); ?>
+													<?php echo $error; ?>
+													<label for="image-upload" id="image-label">Set Photo Profile</label>
+													<input type="file" name="userfile" id="image-upload" />
+													<button class="btn btn-primary float-right" type="submit">Save</button>
+													<?php echo form_close();?> -->
+												<!-- </div> -->
 											</div>
 										</div>
 									</div>
@@ -94,7 +143,7 @@
 										<div class="card-body">
 											<div class="row mb-5">
 												<div class="col-md-4">
-													Lorem Ipsum
+
 												</div>
 											</div>
 										</div>
