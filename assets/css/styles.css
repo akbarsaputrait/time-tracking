@@ -9630,3 +9630,29 @@ h6 {
 	box-shadow: 0 5px 10px 0 rgba(0, 0, 0, .1);
 	border: none;
 }
+
+.loader {
+	border: 16px solid #4d4d4d;
+	border-radius: 50%;
+	border-top: 16px solid #42a5f5;
+	width: 120px;
+	height: 120px;
+	-webkit-animation: spin 1s linear infinite; /* Safari */
+	animation: spin 1s linear infinite;
+	position: relative;
+    left: 37%;
+    top: 40%;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+	0% { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+  }
+
+  

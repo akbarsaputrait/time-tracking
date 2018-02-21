@@ -11,10 +11,13 @@ class Dashboard extends CI_Controller {
 	
 	public function index()
 	{
-		// $where = array(
-		// 	'username' => 'admin'
-		// );
-		// $data['admin'] = $this->m_data->select('admin', $where);
 		$this->load->view('dashboard');
+	}
+
+	public function dashboard()
+	{
+		$data['count_client'] = $this->db->query('SELECT count(*) AS id FROM client')->result();
+		$data['clients'] = $this->db->query('SELECT * FROM client')->result();
+		$this->load->view('content/dashboard', $data);
 	}
 }

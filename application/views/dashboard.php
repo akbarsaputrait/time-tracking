@@ -58,103 +58,7 @@
 				</nav>
 			</div>
 			<div class="content">
-				<div class="container-fluid">
-					<div class="row justify-content-center">
-						<div class="col-md-3">
-							<div class="card p-4" style="box-shadow: 0 5px 10px 0 rgba(0,0,0,.1); border: none;">
-								<div class="card-body d-flex justify-content-between align-items-center">
-									<div>
-										<span class="h4 d-block font-weight-normal mb-2">
-											<?php
-$sql = $this->db->query('SELECT count(*) AS id FROM client');
-foreach ($sql->result() as $row) {
-    echo $row->id;
-}
-?>
-										</span>
-										<span class="font-weight-light">Jumlah User</span>
-									</div>
-									<div class="h2 text-muted">
-										<i class="icon icon-people"></i>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="card p-4" style="box-shadow: 0 5px 10px 0 rgba(0,0,0,.1); border: none;">
-								<div class="card-body d-flex justify-content-between align-items-center">
-									<div>
-										<span class="h4 d-block font-weight-normal mb-2">
-											3
-										</span>
-										<span class="font-weight-light">User Online</span>
-									</div>
-									<div class="h2 text-muted">
-										<i class="icon icon-login"></i>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<div class="card">
-								<div class="card-body">
-									<div class="row">
-										<div class="form-group col-md-4">
-											<input id="search" placeholder="Search..." class="form-control" />
-										</div>
-									</div>
-									<div class="table-responsive">
-										<table class="table table-bordered">
-											<thead>
-												<tr>
-													<td>
-														No.
-													</td>
-													<td>
-														Nama
-													</td>
-													<td>
-														PC
-													</td>
-													<td>
-														Email
-													</td>
-												</tr>
-											</thead>
-											<tbody id="users">
-												<?php
-										$query = $this->db->query('SELECT * FROM client');
-										$x = 1;
-										foreach($query->result() as $row){							
-?>
-													<tr>
-														<td>
-															<?= $x++;?>
-														</td>
-														<td>
-															<?= $row->username;?>
-														</td>
-														<td>
-															<?= $row->pc;?>
-														</td>
-														<td>
-															<?= $row->email;?>
-														</td>
-														<?php
-										}
-									?>
-													</tr>
-											</tbody>
-										</table>
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<div class="loader"></div>
 			</div>
 		</div>
 	</div>
@@ -164,41 +68,30 @@ foreach ($sql->result() as $row) {
 	<script src="<?php echo base_url('assets/js/bootstrap.min.js') ?>"></script>
 	<script src="<?php echo base_url('assets/js/chart.min.js') ?>"></script>
 	<script src="<?php echo base_url('assets/js/carbon.js') ?>"></script>
-	<script src="<?php echo base_url('assets/js/demo.js') ?>"></script>
-	<script src="<?php echo base_url('assets/js/time.js') ?>"></script>
-	<script>
-		$("#search").keyup(function () {
-			//split the current value of searchInput
-			var data = this.value.split(" ");
-			//create a jquery object of the rows
-			var jo = $("#users").find("tr");
-			if (this.value == "") {
-				jo.show();
-				return;
-			}
-			//hide all the rows
-			jo.hide();
 
-			//Recusively filter the jquery object to get results.
-			jo.filter(function (i, v) {
-					var $t = $(this);
-					for (var d = 0; d < data.length; ++d) {
-						if ($t.is(":contains('" + data[d] + "')")) {
-							return true;
-						}
+	<script>
+		$(document).ready(function () {
+			var content = $(".content");
+
+			$(".loader").show();
+			$(".loader").fadeIn();
+	
+			function get_dashboard() {
+				$.ajax({
+					type: 'GET',
+					dataType: 'html',
+					url: '<?php echo base_url('dashboard/dashboard');?>',
+					success: function (data) {
+						$(".loader").hide();
+						content.hide().fadeIn().html(data);
 					}
-					return false;
-				})
-				//show the rows that match.
-				.show();
-		}).focus(function () {
-			this.value = "";
-			$(this).css({
-				"color": "black"
+				});
+			}
+
+			content.on("click", "#refresh", function () {
+				get_dashboard();
 			});
-			$(this).unbind('focus');
-		}).css({
-			"color": "#C0C0C0"
+			get_dashboard();
 		});
 
 	</script>

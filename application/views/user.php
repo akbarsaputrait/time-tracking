@@ -165,42 +165,8 @@ foreach ($clients->result() as $client) {
 	<script src="<?php echo base_url('assets/js/chart.min.js') ?>"></script>
 	<script src="<?php echo base_url('assets/js/carbon.js') ?>"></script>
 	<script src="<?php echo base_url('assets/js/demo.js') ?>"></script>
-	<script>
-		$("#search").keyup(function () {
-			//split the current value of searchInput
-			var data = this.value.split(" ");
-			//create a jquery object of the rows
-			var jo = $("#users").find("tr");
-			if (this.value == "") {
-				jo.show();
-				return;
-			}
-			//hide all the rows
-			jo.hide();
+	<script src="<?php echo base_url('assets/js/search.js') ?>"></script>
 
-			//Recusively filter the jquery object to get results.
-			jo.filter(function (i, v) {
-					var $t = $(this);
-					for (var d = 0; d < data.length; ++d) {
-						if ($t.is(":contains('" + data[d] + "')")) {
-							return true;
-						}
-					}
-					return false;
-				})
-				//show the rows that match.
-				.show();
-		}).focus(function () {
-			this.value = "";
-			$(this).css({
-				"color": "black"
-			});
-			$(this).unbind('focus');
-		}).css({
-			"color": "#C0C0C0"
-		});
-
-	</script>
 </body>
 
 </html>
